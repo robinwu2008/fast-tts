@@ -30,6 +30,14 @@ async def tts():
     response_content = ms_tts_async(content, voice)
     return Response(response_content, headers=headers)
 
+@app.route('/gen-tts')
+async def tts():
+    content=""
+    voice = ""
+    headers = {'Transfer-Encoding': 'chunked', 'Content-Type': 'audio/mpeg'}
+    response_content = ms_tts_async(content, voice)
+    return Response(response_content, headers=headers)
+
 
 async def ms_tts_async(text_input, voice="zh-CN-XiaoxiaoNeural"):
     communicate = edge_tts.Communicate(text_input, voice)
